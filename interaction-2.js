@@ -51,21 +51,19 @@ torpedo.createDSP(audioContext, 1024)
 //
 //==========================================================================================
 
-let canFire = true; 
-
 function accelerationChange(accx, accy, accz) {
-    if (Math.abs(accy) > 15 && canFire) { 
-        playAudio(1);
-        canFire = false; 
-        setTimeout(() => { canFire = true }, 500); 
+    
+    if (abs(accy) > 100) {
+        playAudio(1)
     }
+    
 }
 
 function rotationChange(rotx, roty, rotz) {
 }
 
 function mousePressed() {
-    playAudio()
+    playAudio(1)
     // Use this for debugging from the desktop!
 }
 
