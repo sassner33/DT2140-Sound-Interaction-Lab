@@ -53,12 +53,10 @@ torpedo.createDSP(audioContext, 1024)
 
 function accelerationChange(accx, accy, accz) {
     
-    if (abs(accy) > 5) {
+    if (abs(accy) > 15) {
         playAudio(1)
     }
     
-
-
 }
 
 function rotationChange(rotx, roty, rotz) {
@@ -110,7 +108,7 @@ function playAudio(pressure) {
         return;
     }
     dspNode.setParamValue("/torpedo/trigger", pressure)
-    setTimeout(() => { dspNode.setParamValue("/torpedo/trigger", 0) }, 100);
+    setTimeout(() => { dspNode.setParamValue("/torpedo/trigger", 0) }, 1000);
 }
 
 //==========================================================================================
