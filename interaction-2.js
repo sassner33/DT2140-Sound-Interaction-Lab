@@ -50,67 +50,69 @@ torpedo.createDSP(audioContext, 1024)
 //------------------------------------------------------------------------------------------
 //
 //==========================================================================================
-
+let toggleSound = false;
 function accelerationChange(accx, accy, accz) {
-    
+
     if (abs(accy) > 100) {
+        if (!toggleSound) {
+            toggleSound = true;
+            playAudio(1)
+        }
+    } else {
+        toggleSound = false;
+    }
+
+    function rotationChange(rotx, roty, rotz) {
+    }
+
+    function mousePressed() {
         playAudio(1)
-
+        // Use this for debugging from the desktop!
     }
-    
-}
 
-function rotationChange(rotx, roty, rotz) {
-}
-
-function mousePressed() {
-    playAudio(1)
-    // Use this for debugging from the desktop!
-}
-
-function deviceMoved() {
-    movetimer = millis();
-    statusLabels[2].style("color", "pink");
-}
-
-function deviceTurned() {
-    threshVals[1] = turnAxis;
-}
-function deviceShaken() {
-    shaketimer = millis();
-    statusLabels[0].style("color", "pink");
-    console.log("Device shaken")
-    //playAudio();
-}
-
-function getMinMaxParam(address) {
-    const exampleMinMaxParam = findByAddress(dspNodeParams, address);
-    // ALWAYS PAY ATTENTION TO MIN AND MAX, ELSE YOU MAY GET REALLY HIGH VOLUMES FROM YOUR SPEAKERS
-    const [exampleMinValue, exampleMaxValue] = getParamMinMax(exampleMinMaxParam);
-    console.log('Min value:', exampleMinValue, 'Max value:', exampleMaxValue);
-    return [exampleMinValue, exampleMaxValue]
-}
-
-//==========================================================================================
-// AUDIO INTERACTION
-//------------------------------------------------------------------------------------------
-//
-//------------------------------------------------------------------------------------------
-// Edit here to define your audio controls 
-//------------------------------------------------------------------------------------------
-//
-//==========================================================================================
-
-function playAudio(pressure) {
-    if (!dspNode) {
-        return;
+    function deviceMoved() {
+        movetimer = millis();
+        statusLabels[2].style("color", "pink");
     }
-    if (audioContext.state === 'suspended') {
-        return;
+
+    function deviceTurned() {
+        threshVals[1] = turnAxis;
     }
-    dspNode.setParamValue("/torpedo/trigger", pressure)
-    setTimeout(() => { dspNode.setParamValue("/torpedo/trigger", 0) }, 1000);
-}
+    function deviceShaken() {
+        shaketimer = millis();
+        statusLabels[0].style("color", "pink");
+        console.log("Device shaken")
+        //playAudio();
+    }
+
+    function getMinMaxParam(address) {
+        const exampleMinMaxParam = findByAddress(dspNodeParams, address);
+        // ALWAYS PAY ATTENTION TO MIN AND MAX, ELSE YOU MAY GET REALLY HIGH VOLUMES FROM YOUR SPEAKERS
+        const [exampleMinValue, exampleMaxValue] = getParamMinMax(exampleMinMaxParam);
+        console.log('Min value:', exampleMinValue, 'Max value:', exampleMaxValue);
+        return [exampleMinValue, exampleMaxValue]
+    }
+
+    //==========================================================================================
+    // AUDIO INTERACTION
+    //------------------------------------------------------------------------------------------
+    //
+    //------------------------------------------------------------------------------------------
+    // Edit here to define your audio controls 
+    //------------------------------------------------------------------------------------------
+    //
+    //==========================================================================================
+
+    function playAudio(pressure) {
+        if (!dspNode) {
+            return;
+        }
+        if (audioContext.state === 'suspended') {
+            return;
+        }
+        dspNode.setParamValue("/torpedo/trigger", pressure)
+        setTimeout(() => { dspNode.setParamValue("/torpedo/trigger", 0) }, 1000);
+    }
 
 //==========================================================================================
 // END
