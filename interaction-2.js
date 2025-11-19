@@ -53,6 +53,7 @@ torpedo.createDSP(audioContext, 1024)
 
 function accelerationChange(accx, accy, accz) {
     // playAudio()
+    
 }
 
 function rotationChange(rotx, roty, rotz) {
@@ -75,7 +76,7 @@ function deviceShaken() {
     shaketimer = millis();
     statusLabels[0].style("color", "pink");
     console.log("Device shaken")
-    playAudio();
+    //playAudio();
 }
 
 function getMinMaxParam(address) {
