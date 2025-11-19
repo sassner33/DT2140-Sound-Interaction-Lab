@@ -58,10 +58,9 @@ function accelerationChange(accx, accy, accz) {
 }
 
 function rotationChange(rotx, roty, rotz) {
-    let speed = Math.abs(rotz) / 10;   
-    speed = Math.min(speed, 1);        
-
-    playAudio(speed);
+    if (rotz > 90) {
+        playAudio(1)
+    }
 }
 
 function mousePressed() {
