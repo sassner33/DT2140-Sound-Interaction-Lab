@@ -52,16 +52,18 @@ wind.createDSP(audioContext, 1024)
 //==========================================================================================
 
 function accelerationChange(accx, accy, accz) {
-    // playAudio()
+    let movement = abs(accx) + abs(accy) + abs(accz);
+    if (movement > 15) {  
+        playAudio(1)
+    } else {
+        playAudio(0)
+    }
 
 
 }
 
 function rotationChange(rotx, roty, rotz) {
-    let vol = Math.abs(rotz) / 180; 
-    vol = Math.min(vol, 1); 
-
-    playAudio(vol);
+    ;
 }
 
 function mousePressed() {
