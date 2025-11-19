@@ -53,9 +53,10 @@ torpedo.createDSP(audioContext, 1024)
 
 function accelerationChange(accx, accy, accz) {
     
-    if (abs(accy) > 1) {
-        playAudio()
+    if (abs(accy) > 5) {
+        playAudio(1)
     }
+    
 
 
 }
@@ -101,14 +102,14 @@ function getMinMaxParam(address) {
 //
 //==========================================================================================
 
-function playAudio() {
+function playAudio(pressure) {
     if (!dspNode) {
         return;
     }
     if (audioContext.state === 'suspended') {
         return;
     }
-    dspNode.setParamValue("/torpedo/trigger", 1)
+    dspNode.setParamValue("/torpedo/trigger", pressure)
     setTimeout(() => { dspNode.setParamValue("/torpedo/trigger", 0) }, 100);
 }
 
