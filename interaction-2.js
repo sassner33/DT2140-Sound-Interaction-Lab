@@ -52,8 +52,12 @@ torpedo.createDSP(audioContext, 1024)
 //==========================================================================================
 
 function accelerationChange(accx, accy, accz) {
-    // playAudio()
-    
+    let vol = abs(accy);
+    if (vol > 1) {
+        playAudio(1)
+    }
+
+
 }
 
 function rotationChange(rotx, roty, rotz) {
