@@ -55,6 +55,7 @@ function accelerationChange(accx, accy, accz) {
     
     if (abs(accy) > 100) {
         playAudio(1)
+
     }
     
 }
@@ -108,7 +109,7 @@ function playAudio(pressure) {
         return;
     }
     dspNode.setParamValue("/torpedo/trigger", pressure)
-    setTimeout(() => { dspNode.setParamValue("/torpedo/trigger", 0) }, 1000);
+    //setTimeout(() => { dspNode.setParamValue("/torpedo/trigger", 0) }, 1000);
 }
 
 //==========================================================================================
