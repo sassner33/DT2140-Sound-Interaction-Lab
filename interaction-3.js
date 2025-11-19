@@ -52,8 +52,8 @@ wind.createDSP(audioContext, 1024)
 //==========================================================================================
 
 function accelerationChange(accx, accy, accz) {
-    let movement = abs(accx) + abs(accy) + abs(accz);
-    if (movement > 15) {  
+    let movement = abs(accx) + abs(accy);
+    if (movement > 2) {  
         playAudio(1)
     } else {
         playAudio(0)
