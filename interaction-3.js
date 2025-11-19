@@ -58,12 +58,10 @@ function accelerationChange(accx, accy, accz) {
 }
 
 function rotationChange(rotx, roty, rotz) {
-    if (rotz > 180) {
-        playAudio(1)
-    }
-    else {
-        playAudio(0)
-    }
+    let vol = Math.abs(rotz) / 180; 
+    vol = Math.min(vol, 1); 
+
+    playAudio(vol);
 }
 
 function mousePressed() {
