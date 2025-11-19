@@ -109,7 +109,7 @@ function playAudio(pressure) {
     }
     console.log(pressure)
     dspNode.setParamValue("/wind/volume'", pressure)
-    setTimeout(() => { dspNode.setParamValue("/wind/volume'", 0) }, 2000);
+    setTimeout(() => { dspNode.setParamValue("/wind/volume'", 0) }, 1000);
 
 }
 
