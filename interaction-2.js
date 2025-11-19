@@ -53,7 +53,7 @@ torpedo.createDSP(audioContext, 1024)
 
 function accelerationChange(accx, accy, accz) {
     
-    if (accz < 8) {
+    if (abs(accy) > 1) {
         playAudio()
     }
 
